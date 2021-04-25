@@ -60,6 +60,7 @@ RSpec.describe User, type: :model do
       before do
         create(:user, email: 'test@test.com.br')
       end
+
       it { expect(build(:user, email: 'test@test.com.br')).to be_invalid }
     end
   end

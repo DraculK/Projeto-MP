@@ -1,3 +1,4 @@
-class V1::SessionsController < ApplicationController
-    
+module V1
+  class SessionsController < ApplicationController
+  end
 end

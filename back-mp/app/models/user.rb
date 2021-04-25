@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  validates_presence_of :email, :name
-  validates_uniqueness_of :email
-  validates :name, length: { minimum: 3, message: 'Nome deve ter ao menos 3 caracteres.'}
+
+  validates :email, :name, presence: true
+  validates :email, uniqueness: true
+  validates :name, length: { minimum: 3, message: 'Nome deve ter ao menos 3 caracteres.' }
 end
