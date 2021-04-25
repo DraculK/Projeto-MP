@@ -31,7 +31,7 @@ Para rodar o projeto basta seguir os seguintes passos:
 1. Entrar no diretório _back-mp_ (`cd back-mp`)
 2. Rodar o comando `gem install bundler` e em seguida `gem install rails`. Para verificar se o rails foi corretamente instalado, rodar `rails -v`
 3. Rodar `bundle install` para instalar todas as gems necessárias
-4. Rodar `Rails db:create` e em seguida `Rails db:migrate` para setar o banco de dados
+4. Rodar `rails db:create` e em seguida `rails db:migrate` para setar o banco de dados
 
 ## Console do Rails
 Agora o programa já deve estar pronto para ser utilizado e podemos fazer testes diretamente no console do rails
