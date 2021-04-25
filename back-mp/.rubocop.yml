@@ -1,0 +1,36 @@
+# Extensões do robocop.
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+  # Regras gerais.
+AllCops:
+  TargetRubyVersion: 2.6.4
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'lib/tasks/cucumber.rake'
+    - './Rakefile'
+    - 'spec/rails_helper.rb'
+    - 'app/controllers/postbacks_controller.rb'
+
+# Escrevemos mais linhas em arquivos de teste do que em arquivos de
+# código, então é importante poder ter esses arquivos do tamanho necessário
+Metrics/BlockLength:
+  IgnoredMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+
+# Trabalhamos bastante com testes como a documentação viva do projeto então
+# desabilitamos o Cop de documentação com comentário.
+Style/Documentation:
+  Enabled: false
+
+# O Cop de strings literais imutáveis parece introduzir uma feature que não é
+# utilizada com frequência em Rails e que possui pouca aplicação no momento.
+# Caso essa feature seja padrão no Ruby 3, podemos reabilitar o Cop.
+Style/FrozenStringLiteralComment:
+  Enabled: false
