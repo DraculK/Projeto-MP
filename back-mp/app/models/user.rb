@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :email, :name, presence: true
   validates :email, uniqueness: true
   validates :name, length: { minimum: 3, message: 'Nome deve ter ao menos 3 caracteres.' }
+
+  has_one_attached :image
 end
