@@ -5,4 +5,5 @@ class Question < ApplicationRecord
                          message: ' - %<value>s não é uma categoria válida! '\
                          'Escolha entre Múltipla escolha, Verdadeiro/Falso e Dissertativa' }
   has_many :alternatives, dependent: :restrict_with_exception
+  belongs_to :quiz
 end

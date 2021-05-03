@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_230832) do
+ActiveRecord::Schema.define(version: 2021_05_03_014820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(version: 2021_05_02_230832) do
     t.string "statement"
     t.string "category"
     t.float "grade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "quiz_id", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quiz_users", force: :cascade do |t|
+    t.bigint "quiz_id", null: false
+    t.bigint "user_id", null: false
+    t.float "grade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_quiz_users_on_quiz_id"
+    t.index ["user_id"], name: "index_quiz_users_on_user_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.float "grade"
+    t.bigint "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -48,4 +69,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_230832) do
   end
 
   add_foreign_key "alternatives", "questions"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_users", "quizzes"
+  add_foreign_key "quiz_users", "users"
 end
