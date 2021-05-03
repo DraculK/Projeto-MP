@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_200331) do
+ActiveRecord::Schema.define(version: 2021_05_02_230832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2021_05_02_200331) do
   create_table "alternatives", force: :cascade do |t|
     t.string "body"
     t.boolean "correct_answer?"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "question_id", null: false
+    t.index ["question_id"], name: "index_alternatives_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "statement"
+    t.string "category"
+    t.float "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -37,4 +47,5 @@ ActiveRecord::Schema.define(version: 2021_05_02_200331) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "alternatives", "questions"
 end

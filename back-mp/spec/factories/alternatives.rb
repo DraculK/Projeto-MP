@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :alternative do
-    body { "Verdadeiro" }
+    body { 'Verdadeiro' }
     correct_answer? { nil }
+    question_id { 1 }
 
     factory :right_answer do
       correct_answer? { true }

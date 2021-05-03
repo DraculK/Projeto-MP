@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Alternative, type: :model do
+  before do
+    Question.delete_all
+    create(:question, id: 1)
+    create(:question, id: 2)
+  end
+
   describe 'factory' do
     context 'when using standard factory' do
       it { expect(build(:alternative)).to be_valid }
@@ -29,7 +35,21 @@ RSpec.describe Alternative, type: :model do
 
   describe 'validations' do
     context 'when alternative has no body text' do
-      it { expect(build(:alternative, body: " ")).to be_invalid }
+      it { expect(build(:alternative, body: ' ')).to be_invalid }
+    end
+
+    context 'when there are equal alternatives in the same question' do
+      before do
+        create(:alternative, question_id: 1, body: 'Original alternative')
+      end
+      it { expect(build(:alternative, question_id: 1, body: 'Original alternative')).to be_invalid }
+    end
+
+    context 'when there are equal alternatives in the different questions' do
+      before do
+        create(:alternative, question_id: 1, body: 'Original alternative')
+      end
+      it { expect(build(:alternative, question_id: 2, body: 'Original alternative')).to be_valid }
     end
   end
 end
