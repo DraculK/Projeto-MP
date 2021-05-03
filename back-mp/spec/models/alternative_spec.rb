@@ -51,5 +51,19 @@ RSpec.describe Alternative, type: :model do
       end
       it { expect(build(:alternative, question_id: 2, body: 'Original alternative')).to be_valid }
     end
+
+    context 'when question is gradeble and correct_awnser is nil' do
+      before do
+        create(:gradeble_question, id: 3)
+      end
+      it { expect(build(:alternative, question_id: 3, correct_answer?: nil)).to be_invalid }
+    end
+
+    context 'when question is gradeble and correct_awnser is not nil' do
+      before do
+        create(:gradeble_question, id: 3)
+      end
+      it { expect(build(:alternative, question_id: 3, correct_answer?: true)).to be_valid }
+    end
   end
 end
