@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
+  before do
+    Quiz.delete_all
+    User.delete_all
+    create(:user, id: 1, creator: true)
+    create(:quiz, id: 1, creator_id: 1)
+    create(:quiz, id: 2, creator_id: 1)
+  end
+
   describe 'factory' do
     context 'when using standard factory' do
       it { expect(build(:question)).to be_valid }
@@ -42,6 +50,38 @@ RSpec.describe Question, type: :model do
 
     context 'when question category is not one of the pre defined options' do
       it { expect(build(:question, category: 'De marcar')).to be_invalid }
+    end
+
+    context 'when there are equal questions in the same quiz' do
+      before do
+        create(:question, quiz_id: 1, statement: 'Original question')
+      end
+
+      it { expect(build(:question, quiz_id: 1, statement: 'Original question')).to be_invalid }
+    end
+
+    context 'when there are equal questions in the different quizzes' do
+      before do
+        create(:question, quiz_id: 1, statement: 'Original question')
+      end
+
+      it { expect(build(:question, quiz_id: 2, statement: 'Original question')).to be_valid }
+    end
+
+    context 'when quiz is gradeble and question value is nil' do
+      before do
+        create(:gradeble_quiz, id: 3)
+      end
+
+      it { expect(build(:question, quiz_id: 3, grade: nil)).to be_invalid }
+    end
+
+    context 'when quiz is gradeble and correct_awnser is not nil' do
+      before do
+        create(:gradeble_quiz, id: 3)
+      end
+
+      it { expect(build(:question, quiz_id: 3, grade: 1.4)).to be_valid }
     end
   end
 end

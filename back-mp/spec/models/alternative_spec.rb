@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Alternative, type: :model do
   before do
+    Quiz.delete_all
     Question.delete_all
-    create(:question, id: 1)
-    create(:question, id: 2)
+    User.delete_all
+    create(:user, id: 1, creator: true)
+    create(:quiz, id: 1, creator_id: 1)
+    create(:question, id: 1, quiz_id: 1, statement: 'Questão 1')
+    create(:question, id: 2, quiz_id: 1, statement: 'Questão 2')
   end
 
   describe 'factory' do
@@ -42,6 +46,7 @@ RSpec.describe Alternative, type: :model do
       before do
         create(:alternative, question_id: 1, body: 'Original alternative')
       end
+
       it { expect(build(:alternative, question_id: 1, body: 'Original alternative')).to be_invalid }
     end
 
@@ -49,6 +54,7 @@ RSpec.describe Alternative, type: :model do
       before do
         create(:alternative, question_id: 1, body: 'Original alternative')
       end
+
       it { expect(build(:alternative, question_id: 2, body: 'Original alternative')).to be_valid }
     end
 
@@ -56,6 +62,7 @@ RSpec.describe Alternative, type: :model do
       before do
         create(:gradeble_question, id: 3)
       end
+
       it { expect(build(:alternative, question_id: 3, correct_answer?: nil)).to be_invalid }
     end
 
@@ -63,6 +70,7 @@ RSpec.describe Alternative, type: :model do
       before do
         create(:gradeble_question, id: 3)
       end
+
       it { expect(build(:alternative, question_id: 3, correct_answer?: true)).to be_valid }
     end
   end
