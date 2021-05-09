@@ -6,4 +6,5 @@ class Question < ApplicationRecord
                          'Escolha entre Múltipla escolha, Verdadeiro/Falso e Dissertativa' }
   has_many :alternatives, dependent: :restrict_with_exception
   belongs_to :quiz
+
 end

@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :question do
     statement { 'Responda à pergunta!' }
     category { 'Múltipla escolha' }
+    association :quiz
     grade { nil }
 
     factory :gradeble_question do
