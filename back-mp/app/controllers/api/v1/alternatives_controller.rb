@@ -17,7 +17,7 @@ module Api
         alternative = Alternative.find(params[:id])
         alternative.update!(alternative_params)
 
-        render alternative, status: :ok
+        render json: alternative, status: :ok
       rescue StandardError => e
         render json: {
           error: 'Bad request',

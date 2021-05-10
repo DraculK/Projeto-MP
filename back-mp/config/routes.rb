@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         patch 'update/:id', to: "alternatives#update"
         get 'index', to: "alternatives#index"
         get 'show/:id', to: "alternatives#show"
-        delete 'delete:id', to: "alternatives#delete"
+        delete 'delete/:id', to: "alternatives#delete"
       end
       scope 'questions/' do
         post 'create', to: 'questions#create'
