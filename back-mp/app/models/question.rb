@@ -7,7 +7,7 @@ class Question < ApplicationRecord
                          'Escolha entre Múltipla escolha, Verdadeiro/Falso e Dissertativa' }
   validates :grade, presence: { scope: :quiz_id, if: :gradeble_quiz?,
                                 message: '- Esse quiz vale nota. Informe o valor da questão!' }
-  has_many :alternatives, dependent: :restrict_with_exception
+  has_many :alternatives, dependent: :destroy
   belongs_to :quiz
 
   def gradeble_quiz?

@@ -41,7 +41,7 @@ module Api
         alternative = Alternative.find(params[:id])
         alternative.destroy!
 
-        render json: {notice: 'Alternativa excluída com sucesso!'}, status: :ok
+        render json: { notice: 'Alternativa excluída com sucesso!' }, status: :ok
       rescue StandardError => e
         render json: {
           error: 'Bad request',
@@ -50,9 +50,11 @@ module Api
       end
 
       def show
-        alternative = Alternative.where(id: params[:id]).select(
-          'id', 'body', 'correct_answer?', 'question_id'
-        ) if Alternative.find(params[:id])
+        if Alternative.find(params[:id])
+          alternative = Alternative.where(id: params[:id]).select(
+            'id', 'body', 'correct_answer?', 'question_id'
+          )
+        end
 
         render json: alternative, status: :ok
       rescue StandardError => e

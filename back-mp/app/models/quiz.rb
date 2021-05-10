@@ -2,8 +2,8 @@ class Quiz < ApplicationRecord
   validates :title, :creator_id, presence: true
   validate :creator_exists
 
-  has_many :questions, dependent: :restrict_with_exception
-  has_many :quiz_users
+  has_many :questions, dependent: :destroy
+  has_many :quiz_users, dependent: :destroy
   has_many :users, through: :quiz_users
 
   def creator_exists
