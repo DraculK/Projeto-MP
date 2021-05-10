@@ -5,11 +5,19 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'sign_in', to: "sessions#sign_in"
 
-      post '/alternative/create', to:  "alternatives#create", as: :create_alternative
-      patch '/alternative/:id', to: "alternatives#update", as: :update_alternative
-      get '/alternatives', to: "alternatives#index", as: :alternatives
-      get '/alternative/:id', to: "alternatives#show", as: :show_alternative
-      delete '/alternative/:id', to: "alternatives#delete", as: :destroy_alternative
+      scope 'alternatives/' do
+        post 'create', to:  "alternatives#create"
+        patch 'update/:id', to: "alternatives#update"
+        get 'index', to: "alternatives#index"
+        get 'show/:id', to: "alternatives#show"
+        delete 'delete:id', to: "alternatives#delete"
+      end
+      scope 'questions/' do
+        post 'create', to: 'questions#create'
+        get 'show/:id', to: 'questions#show'
+        delete "delete/:id", to: "questions#delete"
+        put "update/:id", to: "questions#update"
+      end
     end
   end
 end
