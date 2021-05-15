@@ -1,13 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-<<<<<<< HEAD
 import Signin from './pages/Signin';
-=======
 import { View } from 'react-native';
 import Signin from './pages/Signin';
 import { ButtonSubmit, CadastroSubmit, TextSubmit } from './pages/Signin/styles';
 import {TextInput,container} from 'react-native';
->>>>>>> cadastro
 
 
 
@@ -16,15 +13,6 @@ export default function App() {
 const [nome, setNome] = useState('');
 const [email, setEmail] = useState('');
 const [senha, setSenha] = useState('');
-
-<<<<<<< HEAD
-  return (
-    <>
-      <Signin />
-      <StatusBar style="light" />
-    </>
-  );
-=======
 
   return (
     
@@ -79,7 +67,6 @@ marginBottom:10,
 
   });
 
->>>>>>> cadastro
 }
 
 
