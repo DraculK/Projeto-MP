@@ -49,3 +49,9 @@ justify-content: center;
 font-size:20px;
 font-weight: bold;
 `
+export const CadastroSubmit = styled.Text`
+color: #000;
+font-size:26px;
+font-weight: 700;
+margin-bottom: 29px;
+`
