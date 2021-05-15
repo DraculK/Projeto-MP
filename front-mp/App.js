@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import Signin from './pages/Signin';
 import { View } from 'react-native';
 import Signin from './pages/Signin';
 import { ButtonSubmit, CadastroSubmit, TextSubmit } from './pages/Signin/styles';
