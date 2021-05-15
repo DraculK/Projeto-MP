@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 3, message: 'Nome deve ter ao menos 3 caracteres.' }
   has_many :quiz_users, dependent: :destroy
   has_many :quizzes, through: :quiz_users
+  has_one_attached :image
 end
