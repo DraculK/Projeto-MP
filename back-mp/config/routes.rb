@@ -6,6 +6,29 @@ Rails.application.routes.draw do
       post 'sign_in', to: "sessions#sign_in"
       get 'show/:id', to: 'sessions#show'
       post 'create', to: 'sessions#create'
+
+      scope 'alternatives/' do
+        post 'create', to:  "alternatives#create"
+        patch 'update/:id', to: "alternatives#update"
+        get 'index', to: "alternatives#index"
+        get 'show/:id', to: "alternatives#show"
+        delete 'delete/:id', to: "alternatives#delete"
+      end
+
+      scope 'questions/' do
+        post 'create', to: 'questions#create'
+        get 'show/:id', to: 'questions#show'
+        delete "delete/:id", to: "questions#delete"
+        put "update/:id", to: "questions#update"
+      end
+
+      scope 'quizzes/' do
+        post 'create', to:  "quizzes#create"
+        patch 'update/:id', to: "quizzes#update"
+        get 'index', to: "quizzes#index"
+        get 'show/:id', to: "quizzes#show"
+        delete 'delete/:id', to: "quizzes#delete"
+      end
     end
   end
 end
