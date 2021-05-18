@@ -1,0 +1,4 @@
+<h1>Quiz top demais</h1>
+<% if current_user %>
+<h2>Bem vindo de volta, <%= current_user.name %>!</h2>
+<%= button_to 'Sair', destroy_user_session_path, method: :delete%> <% else %> <%= link_to 'Cadastrar', new_user_registration_path%> <%= link_to 'Entrar', new_user_session_path%> <% end %>
