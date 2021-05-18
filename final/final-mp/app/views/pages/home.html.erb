@@ -1,0 +1,7 @@
+<% if current_user %>
+<h1>Bem vindo <%=current_user.name%>!</h1>
+<p><%= button_to 'Sair', destroy_user_session_path, method: :delete %></p>
+<% else %>
+<p>Acesse sua conta <%= link_to 'Entrar', new_user_session_path %></p>
+<p>Não tem conta ainda? <%= link_to 'Criar conta', new_user_registration_path %></p>
+<% end %>
