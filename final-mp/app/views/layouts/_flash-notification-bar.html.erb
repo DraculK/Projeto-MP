@@ -1,0 +1,43 @@
+<!-- jquery -->
+
+
+<div id="flash-notifications-container" style="z-index: 98">
+  <% flash.each do |message_type, message| %>
+    <% if flash[:notice] %>
+      <div class="alert alert-info alert-dismissible fade show mb-0" role="alert">
+        <%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+        <%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% elsif flash[:success] %>
+      <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+        <%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% elsif flash[:warning] %>
+      <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
+        <%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% else %>
+      <div class="alert alert-dark alert-dismissible fade show mb-0" role="alert">
+        <%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+</div>
