@@ -1,26 +1,35 @@
-<h2>Log in</h2>
+<body class="body-homepage">
+    <h2 class="text-light">Entrar</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field pt-3 pb-2">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "", placeholder:"Email" %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <div class="pt-3 pb-2">
+        <%= f.password_field :password, autocomplete: "current-password", class: "", placeholder:"Senha" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <% if devise_mapping.rememberable? %>
+    <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+    </div>
+    <% end %>
+
+    <div class="actions pt-3 pb-3">
+        <%= f.submit "Entrar", class: "btn btn-secondary" %>
+    </div>
+    <%= link_to 'Cadastre-se', new_user_registration_path, class: "btn btn-secondary"%></h5>
+    <% end %>
+
+
+</body>
+<style>
+    .body-homepage {
+        background: rgb(63, 94, 251);
+        background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        text-align: center;
+        padding-top: 80px;
+    }
+</style>
