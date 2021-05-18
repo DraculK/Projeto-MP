@@ -4,9 +4,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :admin?
+  helper_method :creator?
 
   def admin?
     current_user && current_user.admin == true
+  end
+
+  def creator?
+    unless current_user && current_user.creator == true
+      flash[:error] = 'Ops... Usuário não é um criador de questionário!'
+      redirect_to root_path
+    end
   end
 
   protected
