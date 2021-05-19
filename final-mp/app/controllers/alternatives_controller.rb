@@ -18,7 +18,7 @@ class AlternativesController < ApplicationController
     rescue StandardError => e
       flash[:error] = "Não foi possível criar alternativa (#{e})."
     ensure
-      redirect_to new_alternative_path(:quiz_id, :question_id)
+      redirect_to new_alternative_path(alternative.question.quiz_id, alternative.question_id)
     end
   end
 
@@ -27,7 +27,7 @@ class AlternativesController < ApplicationController
       @alternative = Alternative.find(params[:alternative_id])
     else
       flash[:error] = 'Alternativa não encontrada!'
-      redirect_to edit_question_path(:quiz_id, :question_id)
+      redirect_to new_alternative_path(alternative.question.quiz_id, alternative.question_id)
     end
   end
 
@@ -37,10 +37,10 @@ class AlternativesController < ApplicationController
     begin
       alternative.update!(alternative_params)
       flash[:success] = 'Alternativa adicionada!'
-      redirect_to edit_question_path(:quiz_id, :question_id)
+      redirect_to new_alternative_path(alternative.question.quiz_id, alternative.question_id)
     rescue StandardError => e
       flash[:error] = "Não foi possível criar alternativa (#{e})."
-      redirect_to edit_alternative_path(:quiz_id, :question_id, :alternative_id)
+      redirect_to edit_alternative_path(alternative.question.quiz_id, alternative.question_id, alternative.id)
   
     end
   end
@@ -55,7 +55,7 @@ class AlternativesController < ApplicationController
         flash[:error] = "Não foi possível remover a alternativa (#{e})."
       end
     end
-    redirect_to edit_question_path(:quiz_id, :question_id)
+    redirect_to new_alternative_path(alternative.question.quiz_id, alternative.question_id)
   end
 
 private
