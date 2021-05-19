@@ -66,7 +66,8 @@ private
       :title,
       :description,
       :grade,
-      :anonymous
+      :anonymous,
+      :image
     )
   end
 
