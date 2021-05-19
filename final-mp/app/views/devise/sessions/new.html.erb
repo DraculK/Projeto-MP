@@ -2,23 +2,25 @@
     <h2 class="text-light">Entrar</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field pt-3 pb-2">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "", placeholder:"Email" %>
-    </div>
+    <div class="form-inputs">
+        <div class="form-group field pt-3 pb-2">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder:"Email" %>
+        </div>
 
-    <div class="pt-3 pb-2">
-        <%= f.password_field :password, autocomplete: "current-password", class: "", placeholder:"Senha" %>
-    </div>
+        <div class="form-group pt-3 pb-2">
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder:"Senha" %>
+        </div>
 
-    <% if devise_mapping.rememberable? %>
-    <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-    </div>
-    <% end %>
+        <% if devise_mapping.rememberable? %>
+        <div class="field form-check">
+            <%= f.check_box :remember_me, class: 'form-check-input' %>
+            <%= f.label :remember_me %>
+        </div>
+        <% end %>
 
-    <div class="actions pt-3 pb-3">
-        <%= f.submit "Entrar", class: "btn btn-secondary" %>
+        <div class="actions pt-3 pb-3">
+            <%= f.submit "Entrar", class: "btn btn-secondary" %>
+        </div>
     </div>
     <%= link_to 'Cadastre-se', new_user_registration_path, class: "btn btn-secondary"%></h5>
     <% end %>
