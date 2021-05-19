@@ -9,7 +9,7 @@
                         <%= question.category %>
                         <%= "(#{question.grade})"%>
                         <%= link_to 'Editar', edit_question_path(@quiz.id, question.id) %>
-                        <%= link_to 'Deletar', destroy_question_path(@quiz, question), method: :delete, confirm: 'Tem certeza que quer excluir essa questão?' %>
+                        <%= link_to 'Deletar', destroy_question_path(@quiz, question), method: :delete, data: {confirm: 'Tem certeza que quer excluir essa questão?'} %>
                         <% unless question.category != 'Múltipla escolha' %>
                             <%= link_to 'Adicionar Alternativa', new_alternative_path(@quiz.id, question.id) %>
                             - <%= Alternative.where(question_id: question.id).count  %> Alternativas

@@ -15,9 +15,9 @@ class AlternativesController < ApplicationController
     begin
       alternative.question_id = params[:question_id]
       alternative.save!
-      redirect_to edit_question_path
     rescue StandardError => e
       flash[:error] = "Não foi possível criar alternativa (#{e})."
+    ensure
       redirect_to new_alternative_path(:quiz_id, :question_id)
     end
   end
@@ -47,7 +47,7 @@ class AlternativesController < ApplicationController
 
   def destroy
     if Alternative.exists?(id: params[:alternative_id])
-      alternative = Alternative.find(params[:id])
+      alternative = Alternative.find(params[:alternative_id])
       begin
         alternative.destroy!
         flash[:success] = 'Alternativa removida!'
