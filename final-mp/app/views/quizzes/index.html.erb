@@ -1,7 +1,16 @@
 <body class="body-homepage">
-    <div class="">
+    <div class="card-group">
         <% @quizzes.each do |quiz| %>
-        <%= quiz.title %>
+
+
+        <div class="card">
+            <div class="card-body" style="background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);">
+                <%= image_tag quiz.image, style: "width:200px; height:150x;" %>
+                <h5 class="card-title "><%=quiz.title%></h5>
+                <p class="card-text "><%= quiz.description%></p>
+            </div>
+        </div>
+
         <%end%>
     </div>
 </body>

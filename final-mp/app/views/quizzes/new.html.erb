@@ -1,21 +1,21 @@
 <%= form_for(@quiz, url: new_quiz_path) do |f|%>
 
 <div class="form-inputs">
-    <div class="pt-2">
+    <div class="pt-2 field">
         <%= f.text_field :title, :placeholder => "Título" %>
     </div>
 
-    <div class="pt-2">
+    <div class="pt-2 field">
         <%= f.text_field :description, :placeholder => "Descrição" %>
     </div>
 
-    <div class="pt-2">
+    <div class="pt-2 field">
         <%= f.number_field :grade, :placeholder => "Nota do quiz" %>
     </div>
 
-    <div class="pt-2">
-
-        <%= f.check_box :anonymous %> Pode ser respondido anônimo?
+    <div class="pt-2 field">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
     </div>
 </div>
 
