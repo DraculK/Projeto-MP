@@ -46,3 +46,6 @@ Lint/LiteralAsCondition:
 
 Naming/PredicateName:
   Enabled: false 
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
