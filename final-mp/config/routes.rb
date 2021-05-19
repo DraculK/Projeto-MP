@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   scope 'quizzes/' do
     get 'new', to: 'quizzes#new', as: :new_quiz
-    post 'create', to:  "quizzes#create"
+    post 'new', to:  "quizzes#create"
     get 'edit/:quiz_id', to: 'quizzes#edit', as: :edit_quiz
     patch 'update/:quiz_id', to: "quizzes#update"
     get 'index', to: "quizzes#index", as: :index_quiz

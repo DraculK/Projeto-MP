@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def creator?
     unless current_user && current_user.creator == true
       flash[:error] = 'Ops... Usuário não é um criador de questionário!'
-      redirect_to root_path
+      redirect_to home_path
     end
   end
 
