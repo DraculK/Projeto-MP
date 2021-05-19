@@ -5,6 +5,9 @@ class AlternativesController < ApplicationController
 
   def new
     @alternative = Alternative.new
+    @quiz = Quiz.find(params[:quiz_id])
+    @question = Question.find(params[:question_id])
+    @alternatives = Alternative.where(question_id: @question.id)
   end
 
   def create
@@ -59,8 +62,7 @@ private
   def alternative_params
     params.require(:alternative).permit(
       'body',
-      'correct_answer?',
-      'question_id'
+      'correct_answer'
     )
   end
 
