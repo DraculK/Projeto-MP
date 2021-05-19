@@ -17,7 +17,7 @@
                     - <%= Question.where(quiz_id: quiz.id).count  %> Questões
                 </p>
                 <p>
-                    <%= button_to 'Deletar Questão', destroy_quiz_path(quiz.id), method: :delete, class: "text-danger" %>
+                    <%= button_to 'Deletar Quiz', destroy_quiz_path(quiz.id), method: :delete, class: "text-danger" %>
                 </p>
             </div>
         </div>
