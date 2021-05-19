@@ -5,6 +5,8 @@ class QuestionsController < ApplicationController
         
   def new
     @question = Question.new
+    @quiz = Quiz.find(params[:quiz_id])
+    @questions = Question.where(quiz_id: @quiz.id)
   end
 
   def create

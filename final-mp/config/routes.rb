@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     patch 'update/:quiz_id', to: "quizzes#update"
     get 'index', to: "quizzes#index", as: :index_quiz
     get 'show/:quiz_id', to: "quizzes#show", as: :show_quiz
-    delete 'delete/:quiz_id', to: "quizzes#delete", as: :destroy_quiz
+    delete 'delete/:quiz_id', to: "quizzes#destroy", as: :destroy_quiz
 
     scope 'edit/:quiz_id/questions/' do
       get 'new', to: 'questions#new', as: :new_question
       post 'new', to: 'questions#create'
-      delete 'delete/:question_id', to: "questions#delete", as: :destroy_question
+      delete 'delete/:question_id', to: "questions#destroy", as: :destroy_question
       get 'edit/:question_id', to: 'questions#edit', as: :edit_question
       put 'update/:question_id', to: "questions#update"
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         post 'new', to:  "alternatives#create"
         get 'edit/:alternative_id', to: 'alternatives#edit', as: :edit_alternative
         patch 'edit/:alternative_id', to: "alternatives#update"
-        delete 'delete/:alternative_id', to: "alternatives#delete", as: :destroy_alternative
+        delete 'delete/:alternative_id', to: "alternatives#destroy", as: :destroy_alternative
       end
     end
   end
