@@ -7,10 +7,6 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    @quiz = Quiz.find(params[:quiz_id])
-  end
-
-  def show
     if Quiz.exists?(id: params[:quiz_id])
       @quiz = Quiz.find(params[:quiz_id])
       @questions = Question.where(quiz_id: @quiz.id)

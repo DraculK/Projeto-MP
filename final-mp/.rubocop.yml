@@ -34,3 +34,18 @@ Style/Documentation:
 # Caso essa feature seja padrão no Ruby 3, podemos reabilitar o Cop.
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Lint/LiteralAsCondition:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false 
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false

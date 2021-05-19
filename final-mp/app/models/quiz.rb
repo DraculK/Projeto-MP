@@ -2,7 +2,7 @@ class Quiz < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   validates :title, presence: true
   validates :anonymous?, inclusion: { in: [true, false],
-                                      message: '- informe se o questionário pode ser respondido por usuários anônimos!' }
+                                      message: 'Informe se o questionário pode ser respondido por usuários anônimos!' }
   validate :is_creator?
 
   has_many :questions, dependent: :destroy
