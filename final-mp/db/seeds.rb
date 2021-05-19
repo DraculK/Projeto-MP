@@ -9,4 +9,3 @@ User.create(name: 'Admin', email:'admin@admin.com', password:'admin123', passwor
 
 User.create(name: 'Creator', email:'creator@creator.com', password:'creator123', password_confirmation:'creator123', admin:true, creator:true)
 
-Quiz.create(title:'Teste', description: 'Quiz de teste', grade:6.0, anonymous:false, creator_id:8)

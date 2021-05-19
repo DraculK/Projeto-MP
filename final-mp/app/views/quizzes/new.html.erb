@@ -1,28 +1,35 @@
 <%= form_for(@quiz, url: new_quiz_path) do |f|%>
 
 
-    <div class="form-inputs text-center">
-        <h2 style="font-weight: bold">Novo Questionário</h2>
-        <div class="pt-2 form-group">
-            <%= f.text_field :title, :placeholder => "Título", class: 'form-control'%>
-        </div>
-
-        <div class="pt-2 form-group">
-            <%= f.text_area :description, :placeholder => "Descrição", class: 'form-control', rows: 5 %>
-        </div>
-
-        <div class="pt-2 form-group">
-            <%= f.number_field :grade, step: 0.1, :placeholder => "Quanto vale esse questionário?", class: 'form-control' %>
-        </div>
-
-        <div class="pt-2 form-check">
-            <%= f.check_box :anonymous, class: 'form-check-input' %> Pode ser respondido anônimamente?
-        </div>
-
+<div class="form-inputs text-center">
+    <h2 style="font-weight: bold">Novo Questionário</h2>
+    <div class="pt-2 form-group">
+        <%= f.text_field :title, :placeholder => "Título", class: 'form-control'%>
     </div>
 
-    <div class="form-actions py-2 text-center">
-        <%= f.submit "Criar quiz", class: "btn btn-outline-light" %>
+    <div class="pt-2 form-group">
+        <%= f.text_area :description, :placeholder => "Descrição", class: 'form-control', rows: 5 %>
     </div>
+
+    <div class="pt-2 form-group">
+        <%= f.number_field :grade, step: 0.1, :placeholder => "Quanto vale esse questionário?", class: 'form-control' %>
+    </div>
+
+    <div class="pt-2 form-check">
+        <%= f.check_box :anonymous, class: 'form-check-input' %> Pode ser respondido anônimamente?
+    </div>
+
+    <div class="pt-2 form-group">
+        <%= f.label :image%>
+        <%= f.file_field :image%>
+    </div>
+
 
 <% end %>
+
+</div>
+
+<div class="form-actions py-2 text-center">
+    <%= f.submit "Criar quiz", class: "btn btn-outline-light" %>
+</div>
+

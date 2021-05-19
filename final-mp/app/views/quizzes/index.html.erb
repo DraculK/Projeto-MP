@@ -1,25 +1,46 @@
 <body class="body-homepage">
+    <% if current_user %>
     <div class="card-group">
         <% @quizzes.each do |quiz| %>
 
 
         <div class="card">
             <div class="card-body" style="background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);">
+
                 <%= image_tag quiz.image, style: "width:200px; height:150x;" if quiz.image.attached?%>
                 <h5 class="card-title "><%=quiz.title%></h5>
                 <p class="card-text "><%= quiz.description%></p>
                 <p class="mb-5">
-                  <h4 class="quiz-title"><%= quiz.title %></h4>
-                  <%= link_to 'Ver', show_quiz_path(quiz.id) %>
-                  <%= link_to 'Editar', edit_quiz_path(quiz.id) %>
-                  <%= link_to 'Adicionar Questão', new_question_path(quiz.id) %>
-                - <%= Question.where(quiz_id: quiz.id).count  %> Questões
-              </p>
+                    <%= link_to 'Ver', show_quiz_path(quiz.id),  class: "text-light" %>
+                    <%= link_to 'Editar', edit_quiz_path(quiz.id), class: "text-light" %>
+                    <%= link_to 'Adicionar Questão', new_question_path(quiz.id), class: "text-light" %>
+                    - <%= Question.where(quiz_id: quiz.id).count  %> Questões
+                </p>
+                <p>
+                    <%= button_to 'Deletar Questão', destroy_quiz_path(quiz.id), method: :delete, class: "text-danger" %>
+                </p>
             </div>
         </div>
         <%end%>
-        <h6 class="mt-5"><%= link_to 'Novo questionário', new_quiz_path %></h6>
     </div>
+    <%else%>
+    <div class="card-group">
+        <% @anonymous_quizzes.each do |quiz| %>
+
+
+        <div class="card">
+            <div class="card-body" style="background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);">
+                <%= image_tag quiz.image, style: "width:200px; height:150x;" %>
+                <h5 class="card-title "><%=quiz.title%></h5>
+                <p class="card-text "><%= quiz.description%></p>
+            </div>
+        </div>
+        <%end%>
+    </div>
+    <%end%>
+    <p>
+    <h6 class="mt-5"><%= link_to 'Novo questionário', new_quiz_path, class:"text-light" %></h6>
+    </p>
 </body>
 
 <style>

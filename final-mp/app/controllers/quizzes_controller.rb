@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
 
   def index
     @anonymous_quizzes = Quiz.where(anonymous: true)
-    @quizzes = Quiz.where(creator_id: current_user.id) if :creator?
+    @quizzes = Quiz.where(creator_id: current_user.id) if current_user && :creator?
   end
 
   def show
