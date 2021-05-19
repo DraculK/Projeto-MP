@@ -1,5 +1,4 @@
 class AlternativesController < ApplicationController
-    
   before_action :creator?
   before_action :valid_params?
 
@@ -41,7 +40,6 @@ class AlternativesController < ApplicationController
     rescue StandardError => e
       flash[:error] = "Não foi possível criar alternativa (#{e})."
       redirect_to edit_alternative_path(alternative.question.quiz_id, alternative.question_id, alternative.id)
-  
     end
   end
 
@@ -58,7 +56,8 @@ class AlternativesController < ApplicationController
     redirect_to new_alternative_path(alternative.question.quiz_id, alternative.question_id)
   end
 
-private
+  private
+
   def alternative_params
     params.require(:alternative).permit(
       'body',
@@ -67,8 +66,6 @@ private
   end
 
   def valid_params?
-    unless (Quiz.exists?(id: params[:quiz_id]) && Question.exists?(id: params[:question_id]))
-      redirect_to index_quiz_path
-    end
+    redirect_to index_quiz_path unless Quiz.exists?(id: params[:quiz_id]) && Question.exists?(id: params[:question_id])
   end
 end
