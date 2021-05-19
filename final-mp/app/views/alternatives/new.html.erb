@@ -13,7 +13,7 @@
                             Alternativa errada =(
                         <% end %>
                         <%= link_to 'Editar', edit_alternative_path(@quiz, @question, alternative) %>
-                        <%= link_to 'Deletar', destroy_alternative_path(@quiz, @question, alternative), method: :delete, data :{confirm: 'Tem certeza que quer excluir essa alternativa?'} %>
+                        <%= link_to 'Deletar', destroy_alternative_path(@quiz, @question, alternative), method: :delete, data: {confirm: 'Tem certeza que quer excluir essa alternativa?'} %>
                     </div>
                 </li>
             </h4>
