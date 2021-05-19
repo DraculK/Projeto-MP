@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'new', to: 'quizzes#new', as: :new_quiz
     post 'new', to:  "quizzes#create"
     get 'edit/:quiz_id', to: 'quizzes#edit', as: :edit_quiz
-    patch 'update/:quiz_id', to: "quizzes#update"
+    patch 'edit/:quiz_id', to: 'quizzes#update'
     get 'index', to: "quizzes#index", as: :index_quiz
     get 'show/:quiz_id', to: "quizzes#show", as: :show_quiz
     delete 'delete/:quiz_id', to: "quizzes#destroy", as: :destroy_quiz

@@ -1,0 +1,31 @@
+<%= form_for(@quiz, url: edit_quiz_path) do |f|%>
+
+    <div class="form-inputs text-center">
+        <h2 style="font-weight: bold">Editar Questionário</h2>
+        <h2><%= @quiz.title %></h2>
+        <div class="pt-2 form-group">
+            <%= f.text_field :title, :placeholder => "Título", class: 'form-control', value: @quiz.title %>
+        </div>
+
+        <div class="pt-2 form-group">
+            <%= f.text_area :description, :placeholder => "Descrição", class: 'form-control', rows: 5, value: @quiz.description %>
+        </div>
+
+        <div class="pt-2 form-group">
+            <%= f.number_field :grade, step: 0.1, :placeholder => "Quanto vale esse questionário?", class: 'form-control', value: @quiz.grade%>
+        </div>
+
+        <div class="pt-2 form-check">
+            <%= f.check_box :anonymous, class: 'form-check-input', value: @quiz.anonymous %> Pode ser respondido anônimamente?
+        </div>
+    </div>
+
+    <div class="form-actions py-2 text-center">
+        <%= f.submit "Atualizar questionário", class: "btn btn-outline-light" %>
+    </div>
+
+    <div class="quiz-questions pt-5 text-center">
+        Esse questionário possui <%= @count_questions %> questões
+        <%= link_to 'Editar questões', new_question_path(@quiz.id)%>
+    </div>
+<% end %>

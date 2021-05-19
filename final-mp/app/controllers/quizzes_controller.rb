@@ -27,6 +27,7 @@ class QuizzesController < ApplicationController
   def edit
     if Quiz.exists?(id: params[:quiz_id]) && current_user_quiz?
       @quiz = Quiz.find(params[:quiz_id])
+      @count_questions = Question.where(quiz_id: @quiz.id).count
     else
       flash[:error] = 'Questionário não encontrado!'
       redirect_to index_quiz_path
