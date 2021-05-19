@@ -3,9 +3,7 @@ class QuizzesController < ApplicationController
 
   def index
     @anonymous_quizzes = Quiz.where(anonymous: true)
-    if :creator?
-      @quizzes = Quiz.where(creator_id: current_user.id)
-    end
+    @quizzes = Quiz.where(creator_id: current_user.id) if :creator?
   end
 
   def show
@@ -56,7 +54,7 @@ class QuizzesController < ApplicationController
       redirect_to edit_quiz_path(:quiz_id)
     end
   end
-  
+
   def destroy
     if Quiz.exists?(id: params[:quiz_id])
       quiz = Quiz.find(params[:quiz_id])
@@ -70,7 +68,8 @@ class QuizzesController < ApplicationController
     redirect_to index_quiz_path(:quiz_id)
   end
 
-private
+  private
+
   def quiz_params
     params.require(:quiz).permit(
       :title,
@@ -83,7 +82,7 @@ private
 
   def current_user_quiz?
     unless Quiz.find(params[:quiz_id]).creator_id == current_user.id
-      flash[:error] = "Ops...Parece que isso não lhe pertence!"
+      flash[:error] = 'Ops...Parece que isso não lhe pertence!'
       redirect_to index_quiz_path
       false
     end

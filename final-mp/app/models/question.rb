@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :quiz
   validates :statement, presence: true
-  validates :statement, uniqueness: { scope: :quiz_id, message: '- Questão repetida!' }
+  validate :statement, uniqueness: { scope: :quiz_id, message: '- Questão repetida!' }
   validates :category,
             inclusion: { in: ['Múltipla escolha', 'Verdadeiro/Falso', 'Dissertativa'],
                          message: ' - %<value>s não é uma categoria válida! '\
