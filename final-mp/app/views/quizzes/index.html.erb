@@ -1,0 +1,15 @@
+<body class="body-homepage">
+    <div class="">
+        <% @quizzes.each do |quiz| %>
+        <%= quiz.title %>
+        <%end%>
+    </div>
+</body>
+
+<style>
+    .body-homepage {
+        background: rgb(63, 94, 251);
+        background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        text-align: center;
+    }
+</style>

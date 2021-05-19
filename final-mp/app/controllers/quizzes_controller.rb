@@ -1,6 +1,10 @@
 class QuizzesController < ApplicationController
   before_action :creator?, except: %i[show index]
 
+  def index
+    @quizzes = Quiz.all
+  end
+
   def new
     @quiz = Quiz.new
   end
@@ -55,10 +59,10 @@ class QuizzesController < ApplicationController
 private
   def quiz_params
     params.require(:quiz).permit(
-      :tittle,
+      :title,
       :description,
       :grade,
-      :anonymous?
+      :anonymous
     )
   end
 end
