@@ -2,7 +2,10 @@ class QuizzesController < ApplicationController
   before_action :creator?, except: %i[show index]
 
   def index
-    @quizzes = Quiz.all
+    @anonymous_quizzes = Quiz.where(anonymous: true)
+    if :creator?
+      @quizzes = Quiz.where(creator_id: current_user.id)
+    end
   end
 
   def new
@@ -22,7 +25,7 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-    if Quiz.exists?(id: params[:quiz_id])
+    if Quiz.exists?(id: params[:quiz_id]) && current_user_quiz?
       @quiz = Quiz.find(params[:quiz_id])
     else
       flash[:error] = 'Questionário não encontrado!'
@@ -64,5 +67,14 @@ private
       :grade,
       :anonymous
     )
+  end
+
+  def current_user_quiz?
+    unless Quiz.find(params[:quiz_id]).creator_id == current_user.id
+      flash[:error] = "Ops...Parece que isso não lhe pertence!"
+      redirect_to index_quiz_path
+      false
+    end
+    true
   end
 end

@@ -14,14 +14,14 @@ Rails.application.routes.draw do
 
     scope 'edit/:quiz_id/questions/' do
       get 'new', to: 'questions#new', as: :new_question
-      post 'create', to: 'questions#create'
+      post 'new', to: 'questions#create'
       delete 'delete/:question_id', to: "questions#delete", as: :destroy_question
       get 'edit/:question_id', to: 'questions#edit', as: :edit_question
       put 'update/:question_id', to: "questions#update"
 
       scope 'edit/:question_id/alternatives/' do
         get 'new', to: 'alternatives#new', as: :new_alternative
-        post 'create', to:  "alternatives#create"
+        post 'new', to:  "alternatives#create"
         get 'edit/:alternative_id', to: 'alternatives#edit', as: :edit_alternative
         patch 'edit/:alternative_id', to: "alternatives#update"
         delete 'delete/:alternative_id', to: "alternatives#delete", as: :destroy_alternative

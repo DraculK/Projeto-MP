@@ -3,7 +3,7 @@ FactoryBot.define do
     title { 'Questionário Teste' }
     description { 'Esse questionário é um teste' }
     grade { nil }
-    anonymous? { false }
+    anonymous { false }
     creator_id { 1 }
 
     factory :gradeble_quiz do

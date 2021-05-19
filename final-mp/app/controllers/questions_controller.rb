@@ -12,10 +12,10 @@ class QuestionsController < ApplicationController
     begin
       question.quiz_id = params[:quiz_id]
       question.save!
-      redirect_to edit_quiz_path
     rescue StandardError => e
       flash[:error] = "Não foi possível criar questao (#{e})."
-      redirect_to new_question_path(:quiz_id)
+    ensure
+      redirect_to new_question_path(question.quiz_id)
     end
   end
 

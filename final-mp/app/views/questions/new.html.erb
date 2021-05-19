@@ -1,0 +1,20 @@
+<%= form_for(@question, url: new_question_path(params[:quiz_id])) do |f|%>    
+    <div class="form-inputs text-center">
+        <h2 style="font-weight: bold">Adicionar Questão</h2>
+        <div class="pt-2 form-group">
+            <%= f.text_field :statement, :placeholder => "Enunciado", class: 'form-control'%>
+        </div>
+
+        <div class="pt-2 form-group">
+            <%= f.select :category, options_for_select(['Tipo de Questão', 'Múltipla escolha', 'Verdadeiro/Falso', 'Dissertativa'], 1), {}, {class: 'form-control custom-select'} %>
+        </div>
+
+        <div class="pt-2 form-group">
+            <%= f.number_field :grade, step: 0.1, :placeholder => "Quanto vale essa questão?", class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class="form-actions py-2 text-center">
+        <%= f.submit "Adicionar", class: "btn btn-outline-light" %>
+    </div>
+<% end %>

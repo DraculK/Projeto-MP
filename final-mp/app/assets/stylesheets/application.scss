@@ -16,3 +16,13 @@
 
 @import "bootstrap";
 
+body { background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%); }
+
+.form-inputs { 
+    width: 30vw;
+    margin: auto
+}
+
+* {
+    color: white;
+}
