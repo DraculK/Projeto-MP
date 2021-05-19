@@ -1,5 +1,5 @@
 # Projeto MP
-Repositório feito para resolver o projeto final da disciplina Métodos de Programação que tinha como requisito a elaboração de sistema de questionários com usuários respondentes, criadores de questionário, usuários anônimos (que n precisam fazer login na plataforma) e um administrador para gerir o mesmo.
+Repositório feito para resolver o projeto final da disciplina Métodos de Programação que tinha como requisito a elaboração de sistema de questionários com usuários respondentes, criadores de questionário, usuários anônimos (que não precisam fazer login na plataforma) e um administrador para gerir o mesmo.
 
 ## Observação importante
 
