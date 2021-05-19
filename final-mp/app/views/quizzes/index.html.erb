@@ -8,16 +8,22 @@
                 <%= image_tag quiz.image, style: "width:200px; height:150x;" %>
                 <h5 class="card-title "><%=quiz.title%></h5>
                 <p class="card-text "><%= quiz.description%></p>
+                <p class="mb-5">
+                  <h4 class="quiz-title"><%= quiz.title %></h4>
+                  <%= link_to 'Ver', show_quiz_path(quiz.id) %>
+                  <%= link_to 'Editar', edit_quiz_path(quiz.id) %>
+                  <%= link_to 'Adicionar Questão', new_question_path(quiz.id) %>
+                - <%= Question.where(quiz_id: quiz.id).count  %> Questões
+              </p>
             </div>
         </div>
-
         <%end%>
+        <h6 class="mt-5"><%= link_to 'Novo questionário', new_quiz_path %></h6>
     </div>
 </body>
 
 <style>
     .body-homepage {
-        background: rgb(63, 94, 251);
         background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
         text-align: center;
     }

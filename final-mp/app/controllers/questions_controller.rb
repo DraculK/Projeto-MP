@@ -5,6 +5,8 @@ class QuestionsController < ApplicationController
         
   def new
     @question = Question.new
+    @quiz = Quiz.find(params[:quiz_id])
+    @questions = Question.where(quiz_id: @quiz.id)
   end
 
   def create
@@ -12,10 +14,10 @@ class QuestionsController < ApplicationController
     begin
       question.quiz_id = params[:quiz_id]
       question.save!
-      redirect_to edit_quiz_path
     rescue StandardError => e
       flash[:error] = "Não foi possível criar questao (#{e})."
-      redirect_to new_question_path(:quiz_id)
+    ensure
+      redirect_to new_question_path(question.quiz_id)
     end
   end
 
@@ -24,7 +26,7 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:question_id])
     else
       flash[:error] = 'Questão não encontrada!'
-      redirect_to edit_quiz_path(:quiz_id)
+      redirect_to new_question_path(question.quiz_id)
     end
   end
 
@@ -34,10 +36,10 @@ class QuestionsController < ApplicationController
     begin
       question.update!(question_params)
       flash[:success] = 'Questão adicionada!'
-      redirect_to edit_quiz_path(:quiz_id)
+      redirect_to new_question_path(question.quiz_id)
     rescue StandardError => e
       flash[:error] = "Não foi possível criar alternativa (#{e})."
-      redirect_to edit_question_path(:quiz_id, :question_id)
+      redirect_to edit_question_path(question.quiz_id, question)
     end
   end
   
@@ -51,7 +53,7 @@ class QuestionsController < ApplicationController
         flash[:error] = "Não foi possível remover a questão (#{e})."
       end
     end
-    redirect_to edit_quiz_path(:quiz_id)
+    redirect_to new_question_path(question.quiz_id)
   end
 
 private

@@ -1,2 +1,5 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p class="notice"><%#= notice %></p>
+<p class="alert"><%#= alert %></p>
+<% flash.each do |message_type, message| %>
+    <p class="notification text-center"><%= message %></p>
+<% end %>

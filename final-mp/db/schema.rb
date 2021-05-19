@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_05_19_145831) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_145831) do
 
   create_table "alternatives", force: :cascade do |t|
     t.string "body"
-    t.boolean "correct_answer?"
+    t.boolean "correct_answer"
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,7 +86,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_145831) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "name"
     t.boolean "creator"
     t.index ["email"], name: "index_users_on_email", unique: true

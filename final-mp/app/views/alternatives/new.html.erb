@@ -1,1 +1,40 @@
-<p>Eu sou o new</p>
+<div class="questionary-preview mx-auto">
+    <h1 class="text-center pb-2"><b><%= @quiz.title %></b></h1>
+    <h3 class="text-center pb-5"><%= @question.statement %></h1>
+    <ol class="pb-5">
+        <% @alternatives.each do |alternative|%>
+            <h4>
+                <li>
+                    <%= alternative.body %> -
+                    <div class="edit-question-options">
+                        <% if alternative.correct_answer? %>
+                            Alternativa certa =)
+                        <% else %>
+                            Alternativa errada =(
+                        <% end %>
+                        <%= link_to 'Editar', edit_alternative_path(@quiz, @question, alternative) %>
+                        <%= link_to 'Deletar', destroy_alternative_path(@quiz, @question, alternative), method: :delete, data: {confirm: 'Tem certeza que quer excluir essa alternativa?'} %>
+                    </div>
+                </li>
+            </h4>
+        <% end %>
+    </ol>
+</div>
+
+<div class="add-question pt-5">
+    <%= form_for(@alternative, url: new_alternative_path(@quiz, @question)) do |f|%>
+        <div class="form-inputs text-center">
+            <h2 style="font-weight: bold">Adicionar Alternativa</h2>
+            <div class="pt-2 form-group">
+                <%= f.text_area :body, :placeholder => "Texto", class: 'form-control', rows: 2%>
+            </div>
+
+            <div class="pt-2 form-check">
+                <%= f.check_box :correct_answer?, class: 'form-check-input' %> Essa alternativa é a resposta correta?
+            </div>
+
+        <div class="form-actions py-2 text-center">
+            <%= f.submit "Adicionar", class: "btn btn-outline-light" %>
+        </div>
+    <% end %>
+</div>
