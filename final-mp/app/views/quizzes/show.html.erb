@@ -1,0 +1,52 @@
+<% if @quiz.image.attached? %>
+    <%= image_tag @quiz.image, style: 'width: 40vw; height: 40vh; object-fit: cover' %>
+<% end %>
+
+<div class="questionary-preview mx-auto">
+    <h1 class="text-center pb-5"><b><%= @quiz.title %></b></h1>
+    <ol class="pb-5">
+        <% @questions.each do |question|%>
+            <h4>
+                <li class="pt-5">
+                    <%= question.statement %> -
+                    <div class="edit-question-options">
+                        <%= question.category %>
+                        <%= "(#{question.grade})"%>
+                        <% if question.category == 'Múltipla escolha' %>
+                            <% alternatives = Alternative.where(question_id: question.id) %>
+                                <% alternatives.each do |alternative|%>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" disabled>
+                                        <label class="form-check-label text-light" for="flexRadioDefault1">
+                                            <%= alternative.body %>o
+                                        </label>
+                                    </div>
+                                <% end %>
+                        <% elsif question.category == 'Verdadeiro/Falso'%>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" disabled>
+                                <label class="form-check-label text-light" for="flexRadioDefault1">
+                                    Verdadeiro
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" disabled>
+                                <label class="form-check-label text-light" for="flexRadioDefault2">
+                                    Falso
+                                </label>
+                            </div>
+                        <% else %>
+                            <div class="form-group">
+                                <input class="form-control" type="text-area" placeholder="Sua resposta aqui" readonly disabled>
+                            </div>
+                        <% end %>
+                    </div>
+                </li>
+            </h4>
+        <% end %>
+    </ol>
+</div>
+
+<div class="text-center quiz-index">
+    <%= link_to 'voltar', index_quiz_path %>
+</div>

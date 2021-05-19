@@ -10,6 +10,16 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:quiz_id])
   end
 
+  def show
+    if Quiz.exists?(id: params[:quiz_id])
+      @quiz = Quiz.find(params[:quiz_id])
+      @questions = Question.where(quiz_id: @quiz.id)
+    else
+      flash[:error] = 'Questionário não encontrado =('
+      redirect_to index_quiz_path
+    end
+  end
+
   def new
     @quiz = Quiz.new
   end
@@ -29,6 +39,7 @@ class QuizzesController < ApplicationController
   def edit
     if Quiz.exists?(id: params[:quiz_id]) && current_user_quiz?
       @quiz = Quiz.find(params[:quiz_id])
+      @count_questions = Question.where(quiz_id: @quiz.id).count
     else
       flash[:error] = 'Questionário não encontrado!'
       redirect_to index_quiz_path

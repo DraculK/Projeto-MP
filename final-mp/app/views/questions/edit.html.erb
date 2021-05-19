@@ -1,0 +1,27 @@
+<%= form_for(@question, url: edit_question_path(@question.quiz_id, @question)) do |f|%>
+
+    <div class="form-inputs text-center">
+        <h2 style="font-weight: bold">Editar Questão</h2>
+        <h2><%= "#{@quiz.title} - #{@question.statement}" %></h2>
+        <div class="pt-2 form-group">
+            <%= f.text_field :statement, :placeholder => "Enunciado", class: 'form-control', value: @question.statement %>
+        </div>
+
+        <div class="pt-2 form-group">
+            <%= f.select :category, options_for_select([@question.category, 'Múltipla escolha', 'Verdadeiro/Falso', 'Dissertativa'], 1), {}, {class: 'form-control custom-select'} %>
+        </div>
+
+        <div class="pt-2 form-group">
+            <%= f.number_field :grade, step: 0.1, :placeholder => "Quanto vale essa questão?", class: 'form-control',  value: @question.grade %>
+        </div>
+    </div>
+
+    <div class="form-actions py-2 text-center">
+        <%= f.submit "Atualizar questão", class: "btn btn-outline-light" %>
+    </div>
+
+    <div class="quiz-questions pt-5 text-center">
+        Esse questionário possui <%= @count_alternatives %> alternativas
+        <%= link_to 'Editar alternativas', new_alternative_path(@question.quiz.id, @question.id)%>
+    </div>
+<% end %>
