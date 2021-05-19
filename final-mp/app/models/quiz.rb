@@ -8,6 +8,7 @@ class Quiz < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :quiz_users, dependent: :destroy
   has_many :users, through: :quiz_users
+  has_one_attached :image
 
   def is_creator?
   unless User.exists?(creator_id) && User.find(creator_id).creator
