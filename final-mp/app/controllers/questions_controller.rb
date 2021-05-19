@@ -1,8 +1,7 @@
 class QuestionsController < ApplicationController
+  before_action :creator?
+  before_action :valid_params?
 
-    before_action :creator?
-    before_action :valid_params?
-        
   def new
     @question = Question.new
     @quiz = Quiz.find(params[:quiz_id])
@@ -42,7 +41,7 @@ class QuestionsController < ApplicationController
       redirect_to edit_question_path(question.quiz_id, question)
     end
   end
-  
+
   def destroy
     if Question.exists?(id: params[:question_id])
       question = Question.find(params[:question_id])
@@ -56,18 +55,17 @@ class QuestionsController < ApplicationController
     redirect_to new_question_path(question.quiz_id)
   end
 
-private
+  private
+
   def question_params
     params.require(:question).permit(
       :statement,
       :category,
-      :grade,
+      :grade
     )
   end
 
   def valid_params?
-    unless Quiz.exists?(id: params[:quiz_id])
-      redirect_to index_quiz_path
-    end
+    redirect_to index_quiz_path unless Quiz.exists?(id: params[:quiz_id])
   end
 end
