@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  root to: 'pages#home', as: :home
+  get '/perfil', to: 'pages#perfil', as: :perfil
   devise_for :users
 
   scope 'quizzes/' do

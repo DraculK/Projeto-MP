@@ -13,8 +13,13 @@
     <script src="https://kit.fontawesome.com/2acebabdeb.js" crossorigin="anonymous"></script
   </head>
 
-  <body>
-    <%= render 'layouts/flash-notification-bar' %>
+
+
+<body>
+    <%=render 'layouts/navbar'%>
+    <%=render 'layouts/alerts'%>
+    <%# <%= render 'layouts/flash-notification-bar' %>
+
     <%= yield %>
-  </body>
+ </body>
 </html>
