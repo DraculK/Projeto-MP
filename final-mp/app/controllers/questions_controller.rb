@@ -24,6 +24,8 @@ class QuestionsController < ApplicationController
   def edit
     if Question.exists?(id: params[:question_id])
       @question = Question.find(params[:question_id])
+      @quiz = Quiz.find(@question.quiz_id)
+      @count_alternatives = Alternative.where(question_id: @question.id).count
     else
       flash[:error] = 'Questão não encontrada!'
       redirect_to new_question_path(question.quiz_id)
